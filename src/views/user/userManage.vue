@@ -105,7 +105,12 @@ export default {
       this.$store.dispatch('user/getInfo')
     },
     async q1(row) {
-      await disableUser(row.id)
+      const res = await disableUser(row.id)
+      console.log(res)
+      this.$message({
+        message: res.message,
+        type: 'success'
+      })
       this.getUserList()
     }
   }

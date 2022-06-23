@@ -74,7 +74,8 @@ export const constantRoutes = [
     meta: { title: '用户管理', icon: 'el-icon-user-solid' },
     children: [
       // 用户管理
-      { path: '/userManage', component: () => import('@/views/user/userManage'), meta: { title: '用户列表' }}
+      { path: '/userManage', component: () => import('@/views/user/userManage'), meta: { title: '用户列表' }},
+      { path: '/personalData', component: () => import('@/views/user/personalData'), meta: { title: '个人资料' }}
     ]
   },
   // 404 page must be placed at the end !!!

@@ -38,13 +38,14 @@
           <!-- </el-form-item> -->
           <el-form-item label="封面图">
             <el-upload
-              action="1"
+              action="http://192.168.43.104:3000/api/cover"
+              name="cover"
               list-type="picture-card"
               :on-preview="handlePictureCardPreview"
-              :auto-upload="false"
               :before-upload="beforeUpload"
               :on-remove="handleRemove"
-              :on-change="fileList"
+              :on-success="handleSuccess"
+              :file-list="imgUrlList"
             >
               <i class="el-icon-plus" />
             </el-upload>
@@ -152,6 +153,7 @@ export default {
     if (this.$route.query.id) {
       this.getseArticle()
     }
+    console.log(this.myHeaders)
   },
   methods: {
     // 删除图片
@@ -165,7 +167,6 @@ export default {
     },
     // 校验规则
     beforeUpload(file) {
-      console.log(file)
       const { type, size } = file
       if (type !== 'image/jpeg' && type !== 'image/png') {
         this.$message.error('文件必须为JPEG | PNG')
@@ -176,25 +177,25 @@ export default {
         return false
       }
     },
-    // 已上传文件
-    fileList(file, fileList) {
-      console.log(fileList)
+    // 封面图上传成功时
+    handleSuccess(response, file, fileList) {
       this.imgUrlList = fileList
-      this.formData.cover = fileList
+      console.log(fileList)
     },
     async submitArticle() {
+      this.formData.cover = this.imgUrlList.map(item => ({ imgUrl: (item.response && item.response.data.imgUrl) || item.url }))
       try {
         await this.$refs.ruleForm.validate()
-        const formData = this.getFormData(this.formData)
-        this.formData.cover.forEach((item) => {
-          formData.append('cover', item.raw)
-        })
-
-        this.formData.id ? await modifyArticle(formData) : await reqAddArticle(formData)
+        // const formData = this.getFormData(this.formData)
+        // this.formData.cover.forEach((item) => {
+        //   formData.append('cover', item.raw)
+        // })
+        console.log(this.formData)
+        this.formData.id ? await modifyArticle(this.formData) : await reqAddArticle(this.formData)
         this.$message.success(this.formData.id ? '修改成功' : '发布成功！！！')
-        this.$router.push('/article/manage')
+        this.$router.push('/manage')
       } catch (error) {
-        console.log('添加失败！！', error)
+        console.log('添加失败！！', error, this.formData)
       }
     },
     getFormData(object) {
@@ -216,7 +217,7 @@ export default {
       console.log(this.$route.query.id)
       const res = await seArticle({ id: this.formData.id })
       this.formData = { ...res.data[0] }
-      // res.data[0].cover.map((item, index) => this.imgUrlList.push({ uid: index + 1, url: 'http://192.168.43.104:3000' + item }))
+      this.imgUrlList = res.data[0].cover.map((item, index) => ({ url: 'http://192.168.43.104:3000' + item }))
     }
   }
 }
