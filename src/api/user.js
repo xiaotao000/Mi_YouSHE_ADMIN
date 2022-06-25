@@ -39,3 +39,21 @@ export function disableUser(params) {
     method: 'DELETE'
   })
 }
+
+// 搜索用户
+export function getSearch(params) {
+  return request({
+    url: '/my/admin/user/search',
+    method: 'get',
+    params
+  })
+}
+
+// 修改用户
+export function setData(data) {
+  return request({
+    url: '/my/admin/update/user',
+    method: 'post',
+    data
+  })
+}

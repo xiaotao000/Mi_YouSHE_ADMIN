@@ -36,7 +36,7 @@ export function searchArticle(params) {
 }
 
 // 发布文章
-export const reqAddArticle = data => request({ method: 'post', url: '/my/admin/addArticle', data, headers: { 'Content-Type': 'multipart/form-data' }})
+export const reqAddArticle = data => request({ method: 'post', url: '/my/admin/addArticle', data })
 
 // 发布文章的图片
 export const uploadImage = data => request({ method: 'post', url: '/my/article/picture', data, headers: { 'Content-Type': 'multipart/form-data' }})
@@ -59,4 +59,4 @@ export function seArticle(params) {
 }
 
 // 修改文章
-export const modifyArticle = data => request({ method: 'PUT', url: '/my/user/updateArticle', data, headers: { 'Content-Type': 'multipart/form-data' }})
+export const modifyArticle = data => request({ method: 'PUT', url: '/my/user/updateArticle', data })

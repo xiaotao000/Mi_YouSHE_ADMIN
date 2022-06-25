@@ -5,6 +5,7 @@
       placeholder="请输入内容"
       prefix-icon="el-icon-search"
       style="width:400px; margin-bottom:20px ;"
+      @change="searchData"
     />
     <!-- 文章列表 -->
     <el-table
@@ -59,7 +60,7 @@
 </template>
 
 <script>
-import { userList, disableUser } from '@/api/user'
+import { userList, disableUser, getSearch } from '@/api/user'
 export default {
   name: 'UserManage',
   data() {
@@ -112,6 +113,13 @@ export default {
         type: 'success'
       })
       this.getUserList()
+    },
+    async searchData() {
+      const res = await getSearch({ search: this.search })
+      this.articleList = res.data
+      this.pagenum = res.pagenum
+      this.limit = res.limit
+      this.total = res.total
     }
   }
 }
