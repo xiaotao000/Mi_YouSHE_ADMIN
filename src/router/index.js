@@ -60,10 +60,10 @@ export const asyncRoutes = [
     path: '/article',
     component: Layout,
     alwaysShow: true, // 始终显示一级菜单 【哪怕只有一个二级】
-    meta: { title: '文章管理', icon: 'el-icon-folder', rights: 'article' },
+    meta: { title: '文章管理', icon: 'el-icon-folder' },
     children: [
       // 文章发布
-      { path: '/release', component: () => import('@/views/article/release'), meta: { title: '文章发布', rights: 'release' }},
+      { path: '/release', component: () => import('@/views/article/release'), meta: { title: '文章发布', rights: 'article' }},
       // 文章管理
       { path: '/manage', component: () => import('@/views/article/manage'), meta: { title: '文章列表', rights: 'manage' }}
     ]
@@ -72,7 +72,7 @@ export const asyncRoutes = [
     path: '/user',
     component: Layout,
     alwaysShow: true, // 始终显示一级菜单 【哪怕只有一个二级】
-    meta: { title: '用户管理', icon: 'el-icon-user-solid', rights: 'userManage' },
+    meta: { title: '用户管理', icon: 'el-icon-user-solid' },
     children: [
       // 用户管理
       { path: '/userManage', component: () => import('@/views/user/userManage'), meta: { title: '用户列表', rights: 'userManage' }},

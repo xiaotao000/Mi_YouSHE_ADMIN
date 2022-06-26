@@ -59,6 +59,7 @@ const actions = {
   // get user info
   async getInfo({ commit }) {
     const data = await getInfo()
+    commit('SET_USERINFO', data.data)
     const { nickname, avatar } = data.data
     commit('SET_NAME', nickname)
     commit('SET_AVATAR', avatar)
