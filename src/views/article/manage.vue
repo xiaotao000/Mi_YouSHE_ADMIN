@@ -55,8 +55,8 @@
         width="180"
       >
         <template v-slot="{ row }">
-          <el-button style="margin-right:10px" type="primary" icon="el-icon-edit" circle @click="editArticle(row)" />
-          <el-button type="danger" icon="el-icon-delete" circle @click="reqArticle(row.id)" />
+          <el-button v-a="'edit'" style="margin-right:10px" type="primary" icon="el-icon-edit" circle @click="editArticle(row)" />
+          <el-button v-a="'remover'" type="danger" icon="el-icon-delete" circle @click="reqArticle(row.id)" />
         </template>
       </el-table-column>
     </el-table>
