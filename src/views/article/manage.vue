@@ -7,7 +7,7 @@
       style="width:400px; margin-bottom:20px ;"
       @change="getSearch"
     />
-    <el-button type="primary" style="margin-left:10px ;" @click="$router.push('/article/release')">添加发布文章</el-button>
+    <el-button type="primary" style="margin-left:10px ;" @click="$router.push('/release')">添加发布文章</el-button>
     <el-form :model="formInline.article" inline>
       <el-form-item label="分类查询">
         <el-select v-model="formInline.region" placeholder="分类">
@@ -21,17 +21,22 @@
     <!-- 文章列表 -->
     <el-table
       :data="articleList"
+      border
       style="width: 100%"
     >
       <el-table-column
-        prop="time"
         label="日期"
         width="220"
-      />
+        align="center"
+      >
+        <template slot-scope="scope">
+          {{ scope.row.time | time }}
+        </template>
+      </el-table-column>
       <el-table-column
         prop="author"
         label="作者"
-        width="180"
+        width="120"
       />
       <el-table-column
         prop="title"
@@ -40,7 +45,7 @@
       />
       <el-table-column
         label="封面图"
-        width="400"
+        width="380"
       >
         <template v-slot="{ row }">
           <img v-for="img in row.cover.slice(0,3)" :key="img.id" :src="img.imgUrl.startsWith('http://') ? img.imgUrl : `http://192.168.43.104:3000${img.imgUrl}`" alt="" width="100px" height="100px" style="margin-left: 10px">
@@ -80,6 +85,22 @@
 import { getType, ArticleList, ArticleTypeList, searchArticle, removeArticle } from '@/api/article'
 export default {
   name: 'Manage',
+  filters: {
+    time(value) {
+      var date = new Date(value)
+      // 小于10的前面+0   月份 + 1
+      var y = date.getFullYear() // 获取年
+      var m = fn(date.getMonth() + 1) // 获取月
+      var d = fn(date.getDate()) // 获取日
+      var h = fn(date.getHours()) // 获取时
+      var mi = fn(date.getMinutes()) // 获取分
+      var s = fn(date.getSeconds()) // 获取秒
+      function fn(a) {
+        return a > 10 ? a : '0' + a
+      }
+      return `${y}-${m}-${d} ${h}:${mi}:${s}`
+    }
+  },
   data() {
     return {
       search: '',

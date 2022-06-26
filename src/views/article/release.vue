@@ -2,7 +2,7 @@
   <div class="edition">
     <div class="mhy-container">
       <div class="mhy-new-article__header">
-        <h1>{{ isShow? '修改帖子' : '发布帖子' }}</h1>
+        <h1>{{ formData.id ? '修改帖子' : '发布帖子' }}</h1>
       </div>
       <div class="mhy-new-article__editor">
         <el-form
@@ -61,7 +61,7 @@
             />
           </el-form-item>
           <el-form-item style="text-align: center">
-            <button type="submit" class="submit-button">{{ isShow? '修改' : '发布' }}</button>
+            <button type="submit" class="submit-button">{{ formData.id ? '修改' : '发布' }}</button>
           </el-form-item>
         </el-form>
       </div>
@@ -89,7 +89,6 @@ export default {
       }
     }
     return {
-      isShow: true,
       formData: {
         category: '',
         cover: []
@@ -147,8 +146,6 @@ export default {
   mounted() {
     this.formData.category = this.$route.query.category
     this.getArticle()
-    console.log(this.$router.query.id)
-    this.$router.query.id ? this.isShow = true : this.isShow = false
   },
   methods: {
     successUpload(res, file, fileList) {
@@ -194,7 +191,7 @@ export default {
         await this.$refs.ruleForm.validate()
         this.formData.cover = this.fileList.map(item => ({ imageName: item.name, imgUrl: (item.response && item.response.data[0].imgUrl) || item.url }))
         this.formData.id ? await modifyArticle(this.formData) : await reqAddArticle(this.formData)
-        this.$message.success(this.isShow ? '修改成功' : '发布成功！！！')
+        this.$message.success(this.formData.id ? '修改成功' : '发布成功！！！')
         this.$router.push('/manage')
         Object.assign(this.$data, this.$options.data())
       } catch (error) {
