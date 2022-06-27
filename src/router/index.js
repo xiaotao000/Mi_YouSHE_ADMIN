@@ -72,7 +72,7 @@ export const asyncRoutes = [
     path: '/user',
     component: Layout,
     alwaysShow: true, // 始终显示一级菜单 【哪怕只有一个二级】
-    meta: { title: '用户管理', icon: 'el-icon-user-solid' },
+    meta: { title: '用户管理', icon: 'el-icon-user' },
     children: [
       // 用户管理
       { path: '/userManage', component: () => import('@/views/user/userManage'), meta: { title: '用户列表', rights: 'userManage' }},
@@ -83,7 +83,7 @@ export const asyncRoutes = [
     path: '/rotation',
     component: Layout,
     alwaysShow: true, // 始终显示一级菜单 【哪怕只有一个二级】
-    meta: { title: '轮播图管理', icon: 'el-icon-user-solid' },
+    meta: { title: '轮播图管理', icon: 'el-icon-picture-outline' },
     children: [
       // 用户管理
       { path: '/rotation/chart', component: () => import('@/views/rotation'), meta: { title: '轮播列表', rights: 'userManage' }}
