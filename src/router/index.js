@@ -79,6 +79,16 @@ export const asyncRoutes = [
       { path: '/personalData', component: () => import('@/views/user/personalData'), meta: { title: '个人资料', rights: 'personalData' }}
     ]
   },
+  {
+    path: '/rotation',
+    component: Layout,
+    alwaysShow: true, // 始终显示一级菜单 【哪怕只有一个二级】
+    meta: { title: '轮播图管理', icon: 'el-icon-user-solid' },
+    children: [
+      // 用户管理
+      { path: '/rotation/chart', component: () => import('@/views/rotation'), meta: { title: '轮播列表', rights: 'userManage' }}
+    ]
+  },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
