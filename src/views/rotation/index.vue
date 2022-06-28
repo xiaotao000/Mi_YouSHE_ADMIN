@@ -5,7 +5,8 @@
     <!-- 当前显示轮播图列表 -->
     <el-table
       :data="articleList"
-      style="width: 100%"
+      style="width: 100%; margin-top: 20px"
+      border
     >
       <el-table-column
         label="序号"
@@ -101,9 +102,7 @@ export default {
       dialogVisible: false,
       myHeaders: { authorization: 'Bearer ' + token },
       formData: {
-        addKlm: '咨询',
-        imgUrl: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic.soutu123.cn%2Felement_origin_min_pic%2F01%2F40%2F65%2F61573d0bf6a3c2b.jpg%21%2Ffw%2F700%2Fquality%2F90%2Funsharp%2Ftrue%2Fcompress%2Ftrue&refer=http%3A%2F%2Fpic.soutu123.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1658903069&t=b7bdd3bf3baa27e58c88af5c5fc607d0',
-        serial: ''
+        imgUrl: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic.soutu123.cn%2Felement_origin_min_pic%2F01%2F40%2F65%2F61573d0bf6a3c2b.jpg%21%2Ffw%2F700%2Fquality%2F90%2Funsharp%2Ftrue%2Fcompress%2Ftrue&refer=http%3A%2F%2Fpic.soutu123.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1658903069&t=b7bdd3bf3baa27e58c88af5c5fc607d0'
       }
     }
   },
@@ -116,7 +115,6 @@ export default {
     },
     async getImage() {
       const res = await reqAdtdm()
-      console.log(res)
       this.articleList = res.data
     },
     a1(response, file, fileList) {
@@ -128,6 +126,9 @@ export default {
         this.formData.id ? await modifyData(this.formData) : await addChart(this.formData)
         this.$message.success(this.formData.id ? '修改成功' : '新增成功')
         this.dialogVisible = false
+        this.formData = {
+          imgUrl: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic.soutu123.cn%2Felement_origin_min_pic%2F01%2F40%2F65%2F61573d0bf6a3c2b.jpg%21%2Ffw%2F700%2Fquality%2F90%2Funsharp%2Ftrue%2Fcompress%2Ftrue&refer=http%3A%2F%2Fpic.soutu123.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1658903069&t=b7bdd3bf3baa27e58c88af5c5fc607d0'
+        }
         this.getImage()
       } catch (error) {
         this.$message.error('新增失败')
