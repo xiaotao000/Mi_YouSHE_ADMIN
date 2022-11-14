@@ -52,7 +52,7 @@
       <div class="taoTuo">
         <el-upload
           class="avatar-uploader"
-          action="http://192.168.43.104:3000/api/cover"
+          action="http://172.19.10.137:3000/api/cover"
           :show-file-list="false"
           :headers="myHeaders"
           :on-success="a1"
@@ -118,7 +118,7 @@ export default {
       this.articleList = res.data
     },
     a1(response, file, fileList) {
-      this.formData.imgUrl = 'http://192.168.43.104:3000' + response.data[0].imgUrl
+      this.formData.imgUrl = 'http://172.19.10.137:3000' + response.data[0].imgUrl
       console.log(this.formData.imgUrl)
     },
     async a2() {

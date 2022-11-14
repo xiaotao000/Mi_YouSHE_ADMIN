@@ -30,7 +30,7 @@
           </el-form-item>
           <el-form-item label="封面图">
             <el-upload
-              action="http://192.168.43.104:3000/api/cover"
+              action="http://172.19.10.137:3000/api/cover"
               name="cover"
               list-type="picture-card"
               :on-preview="handlePictureCardPreview"
@@ -114,7 +114,7 @@ export default {
             return uploadImage(fd).then(res => {
               // console.log(res)
               // 这个 return 是返回最后的结果
-              return 'http://192.168.43.104:3000' + res.data
+              return 'http://172.19.10.137:3000' + res.data
             })
           } // 图片的上传方法，返回一个 Promise<url>
         }),
@@ -158,8 +158,8 @@ export default {
       this.formData = arr[0]
       console.log(arr[0].cover)
       arr[0].cover.forEach(item => {
-        if (item.imgUrl.indexOf('http://192.168.43.104:3000')) {
-          this.imgUrlList.push({ url: 'http://192.168.43.104:3000' + item.imgUrl })
+        if (item.imgUrl.indexOf('http://172.19.10.137:3000')) {
+          this.imgUrlList.push({ url: 'http://172.19.10.137:3000' + item.imgUrl })
         } else {
           this.imgUrlList.push({ url: item.imgUrl })
         }

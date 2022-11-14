@@ -8,7 +8,7 @@
       <div class="taoTuo">
         <el-upload
           class="avatar-uploader"
-          action="http://192.168.43.104:3000/my/admin/update/avatar"
+          action="http://172.19.10.137:3000/my/admin/update/avatar"
           :show-file-list="false"
           :headers="myHeaders"
           :on-success="scrubData"
@@ -72,7 +72,7 @@ export default {
   computed: {
     ...mapState('user', ['userInfo']),
     imgUrl() {
-      return this.userInfo.avatar ? 'http://192.168.43.104:3000' + this.userInfo.avatar : this.imgSrc
+      return this.userInfo.avatar ? 'http://172.19.10.137:3000' + this.userInfo.avatar : this.imgSrc
     },
     Ckname() {
       return this.formInput.nickname ? this.formInput.nickname : this.userInfo.nickname

@@ -48,7 +48,7 @@
         width="380"
       >
         <template v-slot="{ row }">
-          <img v-for="img in row.cover.slice(0,3)" :key="img.id" :src="img.imgUrl.startsWith('http://') ? img.imgUrl : `http://192.168.43.104:3000${img.imgUrl}`" alt="" width="100px" height="100px" style="margin-left: 10px">
+          <img v-for="img in row.cover.slice(0,3)" :key="img.id" :src="img.imgUrl.startsWith('http://') ? img.imgUrl : `http://172.19.10.137:3000${img.imgUrl}`" alt="" width="100px" height="100px" style="margin-left: 10px">
         </template>
       </el-table-column>
       <el-table-column
