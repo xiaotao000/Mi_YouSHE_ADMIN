@@ -26,7 +26,7 @@ export default {
   props: {
     action: {
       type: String,
-      default: 'http://172.19.10.137:3000/api/cover'
+      default: 'http://172.19.10.109:3000/api/cover'
     },
     value: {
       type: Array,

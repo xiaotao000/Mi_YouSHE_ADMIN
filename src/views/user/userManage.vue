@@ -24,7 +24,7 @@
         label="头像"
       >
         <template v-slot="{ row }">
-          <img style="width:100px;height:100px" :src="'http://172.19.10.137:3000' + row.avatar" alt="">
+          <img style="width:100px;height:100px" :src="'http://172.19.10.109:3000' + row.avatar" alt="">
         </template>
       </el-table-column>
       <el-table-column

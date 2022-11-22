@@ -23,7 +23,7 @@
         label="轮播图片"
       >
         <template v-slot="{ row }">
-          <img style="width:100px;height:100px" :src="row.imgUrl" alt="">
+          <img style="width:100px;height:100px" :src="'http://172.19.10.109:3000'+ row.imgUrl" alt="">
         </template>
       </el-table-column>
       <el-table-column
@@ -52,7 +52,7 @@
       <div class="taoTuo">
         <el-upload
           class="avatar-uploader"
-          action="http://172.19.10.137:3000/api/cover"
+          action="http://172.19.10.109:3000/api/cover"
           :show-file-list="false"
           :headers="myHeaders"
           :on-success="a1"
@@ -60,7 +60,7 @@
         >
           <div class="mhy-avatar">
             <!-- 头像 -->
-            <img :src="formData.imgUrl" alt="" style="width:300px; height:200px">
+            <img :src="formData.imgUrl.startsWith('https://gimg2.baidu.com/') ? formData.imgUrl : 'http://172.19.10.109:3000'+ formData.imgUrl" alt="" style="width:300px; height:200px">
           </div>
         </el-upload>
       </div>
@@ -118,7 +118,7 @@ export default {
       this.articleList = res.data
     },
     a1(response, file, fileList) {
-      this.formData.imgUrl = 'http://172.19.10.137:3000' + response.data[0].imgUrl
+      this.formData.imgUrl = response.data[0].imgUrl
       console.log(this.formData.imgUrl)
     },
     async a2() {
