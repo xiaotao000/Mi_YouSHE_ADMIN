@@ -101,6 +101,7 @@ export default {
       return `${y}-${m}-${d} ${h}:${mi}:${s}`
     }
   },
+
   data() {
     return {
       search: '',

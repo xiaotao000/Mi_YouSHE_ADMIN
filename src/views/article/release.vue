@@ -5,40 +5,20 @@
         <h1>{{ formData.id ? '修改帖子' : '发布帖子' }}</h1>
       </div>
       <div class="mhy-new-article__editor">
-        <el-form
-          ref="ruleForm"
-          action="none"
-          :rules="rules"
-          :label-position="'left'"
-          :model="formData"
-          label-width="100px"
-          class="demo-ruleForm"
-          @submit.native.prevent="submitArticle"
-        >
+        <el-form ref="ruleForm" action="none" :rules="rules" :label-position="'left'" :model="formData"
+          label-width="100px" class="demo-ruleForm" @submit.native.prevent="submitArticle">
           <el-form-item label="标题：" prop="title">
-            <el-input
-              v-model="formData.title"
-              style="width: 750px"
-              type="text"
-              placeholder="标题（必填）"
-              maxlength="30"
-              show-word-limit
-            />
+            <el-input v-model="formData.title" style="width: 750px" type="text" placeholder="标题（必填）" maxlength="30"
+              show-word-limit />
           </el-form-item>
           <el-form-item label="内容">
-            <el-tiptap v-model="formData.introduce" lang="zh" :extensions="extensions" height="350" placeholder="请输入文章内容" />
+            <el-tiptap v-model="formData.introduce" lang="zh" :extensions="extensions" height="350"
+              placeholder="请输入文章内容" />
           </el-form-item>
           <el-form-item label="封面图">
-            <el-upload
-              action="http://172.19.10.109:3000/api/cover"
-              name="cover"
-              list-type="picture-card"
-              :on-preview="handlePictureCardPreview"
-              :before-upload="beforeUpload"
-              :on-remove="handleRemove"
-              :file-list="imgUrlList"
-              :on-success="successUpload"
-            >
+            <el-upload action="http://172.19.10.109:3000/api/cover" name="cover" list-type="picture-card"
+              :on-preview="handlePictureCardPreview" :before-upload="beforeUpload" :on-remove="handleRemove"
+              :file-list="imgUrlList" :on-success="successUpload">
               <i class="el-icon-plus" />
             </el-upload>
             <el-dialog :visible.sync="dialogVisible">
@@ -55,10 +35,7 @@
             <el-radio v-model="formData.category" label="同人图">同人图</el-radio>
           </el-form-item>
           <el-form-item label="话题：" prop="section">
-            <el-input
-              v-model="formData.section"
-              placeholder="请输入话题"
-            />
+            <el-input v-model="formData.section" placeholder="请输入话题" />
           </el-form-item>
           <el-form-item style="text-align: center">
             <button type="submit" class="submit-button">{{ formData.id ? '修改' : '发布' }}</button>
@@ -208,6 +185,7 @@ export default {
   margin-bottom: 60px;
   background-color: #fff;
   border-radius: 4px;
+
   .mhy-new-article__header {
     height: 50px;
     line-height: 50px;
@@ -216,25 +194,29 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     h1 {
       font-size: 16px;
       font-weight: 600;
     }
   }
+
   .mhy-new-article__editor {
     width: auto;
     padding: 50px 80px 40px;
-      .submit-button {
-        width: 190px;
-        height: 42px;
-        margin: 0 auto;
-        text-align: center;
-        cursor: pointer;
-        border: 0;
-        outline: 0;
-        background-color: #00c3ff;
-        color: #fff;
-        border-radius: 4px;    }
+
+    .submit-button {
+      width: 190px;
+      height: 42px;
+      margin: 0 auto;
+      text-align: center;
+      cursor: pointer;
+      border: 0;
+      outline: 0;
+      background-color: #00c3ff;
+      color: #fff;
+      border-radius: 4px;
+    }
   }
 }
 </style>
